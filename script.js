@@ -783,14 +783,10 @@ function toggleTheme() {
         themeIcon.classList.replace('fa-sun', 'fa-moon');
     }
 
-    if (typeof initMap === 'function' && document.getElementById('map')) {
-        if (map) {
-            map = null;
-        }
-        initMap();
+    if (typeof updateMapStyle === 'function' && document.getElementById('map')) {
+        updateMapStyle();
     }
 }
-
 
 function applyTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -808,8 +804,16 @@ function applyTheme() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', applyTheme);
+function updateMapStyle() {
+    if (!map) return; 
 
+    const isNightTheme = document.body.classList.contains('night-theme');
+    map.setOptions({
+        styles: isNightTheme ? darkMapStyle : lightMapStyle
+    });
+}
+
+document.addEventListener('DOMContentLoaded', applyTheme);
 
 
 
