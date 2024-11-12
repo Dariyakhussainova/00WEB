@@ -660,10 +660,13 @@ function isUniqueEmailOrPhone(email, phone, currentUser) {
 
 
 //-------------------
-
 let map;
+let isMapInitialized = false;
 
 function initMap() {
+    if (isMapInitialized) return;
+    isMapInitialized = true; 
+    
     const centerLocation = { lat: 51.1694, lng: 71.4491 };
     const isNightTheme = localStorage.getItem('theme') === 'night';
 
@@ -815,7 +818,7 @@ function applyTheme() {
         themeIcon.classList.replace('fa-sun', 'fa-moon');
     }
 
-    if (typeof initMap === 'function' && document.getElementById('map')) {
+    if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
         initMap();
     }
 }
