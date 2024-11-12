@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Union Building Materials</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-background text-center" style="background-image: url('web_image/backg.jpg');">
+            <div class="logo">
+                <h1>U</h1>
+                <h2>UNION</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation bar/ icons -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">Union Building Materials</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shop.html">Shop</a>
+                    </li>
+                </ul>
+                <div class="nav-icons d-flex ms-auto">
+                    <a href="#" class="ms-3" id="loginLink" onclick="showLoginPopup()"><i class="fas fa-user"></i> Log In</a>
+                    <a href="#" id="profileLink" onclick="showProfilePopup()" style="display: none;"><i class="fas fa-user"></i>
+                        Profile</a>
+                    <a href="#" id="cartIcon" onclick="toggleCartPopup()">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span id="cartCount">0</span>
+                    </a>
+                </div>
+
+                <button id="themeToggleBtn" class="btn btn-primary ms-3">
+                    <i id="themeIcon" class="fas fa-moon"></i>
+                </button>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Filter-->
+    <section class="filter-section container my-5 p-3 border rounded">
+        <div class="text-center mb-3">
+            <h3>Filter by Category:</h3>
+            <div class="btn-group">
+                <button class="btn btn-primary m-2" onclick="filterByCategory('building-materials')">Building
+                    Materials</button>
+                <button class="btn btn-primary m-2" onclick="filterByCategory('tools')">Tools</button>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <h3>Filter by Price Range:</h3>
+            <div class="btn-group">
+                <button class="btn btn-primary m-2" onclick="filterByPriceRange('low')">Less than $50</button>
+                <button class="btn btn-primary m-2" onclick="filterByPriceRange('medium')">$50 - $100</button>
+                <button class="btn btn-primary m-2" onclick="filterByPriceRange('high')">More than $100</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- productList -->
+    <div id="productList" class="row g-4 mt-4"></div>
+        <section class="container my-5">
+            <div class="intro-section text-center mb-4">
+                <h2 class="intro-title">Shop</h2>
+                <p class="intro-description lead">
+                    Browse our wide range of building materials available for purchase.
+                </p>
+            </div>
+
+        
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100">
+                        <img src="web_image/brusiya.jpg" class="card-img-top" alt="Timber">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Timber</h5>
+                            <p class="card-text">$50</p>
+                            <button onclick="showPopup('Timber', 50)" class="btn btn-primary">Buy Now</button>
+                            <div class="rating" id="rating-timber">
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                            </div>
+                            <p id="ratingValue-timber">Rate:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100">
+                        <img src="web_image/cement.jpg" class="card-img-top" alt="Cement">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Cement</h5>
+                            <p class="card-text">$25</p>
+                            <button onclick="showPopup('Cement', 25)" class="btn btn-primary">Buy Now</button>
+                            <div class="rating" id="rating-cement">
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                            </div>
+                            <p id="ratingValue-cement">Rate:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100">
+                        <img src="web_image/drel.jpg" class="card-img-top" alt="Power Tools">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Power Tools</h5>
+                            <p class="card-text">$120</p>
+                            <button onclick="showPopup('Power Tools', 120)" class="btn btn-primary">Buy Now</button>
+                            <div class="rating" id="rating-powertools">
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                            </div>
+                            <p id="ratingValue-powertools">Rate:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100">
+                        <img src="web_image/foil.jpg" class="card-img-top" alt="Foil">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Foil</h5>
+                            <p class="card-text">$25</p>
+                            <button onclick="showPopup('Foil', 25)" class="btn btn-primary">Buy Now</button>
+                            <div class="rating" id="rating-foil">
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                            </div>
+                            <p id="ratingValue-foil">Rate:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-4 mt-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100">
+                        <img src="web_image/wood.jpeg" class="card-img-top" alt="Wood Panels">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Wood Panels</h5>
+                            <p class="card-text">$60</p>
+                            <button onclick="showPopup('Wood Panels', 60)" class="btn btn-primary">Buy Now</button>
+                            <div class="rating" id="rating-woodpannels">
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                            </div>
+                            <p id="ratingValue-woodpannels">Rate:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100">
+                        <img src="web_image/steel.jpeg" class="card-img-top" alt="Steel Rods">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Steel Rods</h5>
+                            <p class="card-text">$80</p>
+                            <button onclick="showPopup('Steel Rods', 80)" class="btn btn-primary">Buy Now</button>
+                            <div class="rating" id="rating-steelrods">
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                            </div>
+                            <p id="ratingValue-steelrods">Rate:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100">
+                        <img src="web_image/kirpich.jpeg" class="card-img-top" alt="Bricks">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Bricks</h5>
+                            <p class="card-text">$45</p>
+                            <button onclick="showPopup('Bricks', 45)" class="btn btn-primary">Buy Now</button>
+                            <div class="rating" id="rating-bricks">
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                            </div>
+                            <p id="ratingValue-bricks">Rate:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100">
+                        <img src="web_image/paint.jpg" class="card-img-top" alt="Paint">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Paint</h5>
+                            <p class="card-text">$40</p>
+                            <button onclick="showPopup('Paint', 40)" class="btn btn-primary">Buy Now</button>
+                            <div class="rating" id="rating-paint">
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                                <i class="star fa fa-star"></i>
+                            </div>
+                            <p id="ratingValue-paint">Rate:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="hidePopup()">&times;</span>
+            <h3>Confirm Booking</h3>
+            <p>Are you sure you want to book <span id="serviceName"></span>?</p>
+            <div class="btn-group">
+                <button class="btn btn-success" onclick="confirmBooking()">Yes</button>
+                <button class="btn btn-danger" onclick="hidePopup()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info -->
+    <section class="container my-5">
+        <h3 class="text-center mb-4">More Information</h3>
+        <div class="accordion my-5">
+            <h3 onclick="toggleAccordion('faq1')" class="question">What types of timber are available?</h3>
+            <div id="faq1" class="answer">We offer a wide range of timber, including oak, pine, and cedar, suitable for
+                various construction and furniture projects.</div>
+
+            <h3 onclick="toggleAccordion('faq2')" class="question">How do I select the right cement for my project?</h3>
+            <div id="faq2" class="answer">Choosing the right cement depends on the nature of your project. Our experts can
+                help you decide based on your specific needs, whether it's for foundations, walls, or other uses.</div>
+
+            <h3 onclick="toggleAccordion('faq3')" class="question">Do you offer warranties on power tools?</h3>
+            <div id="faq3" class="answer">Yes, all our power tools come with a 1-year warranty, covering any manufacturing
+                defects or malfunctions during normal use.</div>
+        </div>
+    </section>
+
+    <!-- Cart popup window with a button to proceed to checkout -->
+    <div id="cartPopup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close" onclick="hideCartPopup()">&times;</span>
+            <h3>Your Cart</h3>
+            <div id="cartItems"></div>
+            <button class="btn btn-primary" onclick="showCheckoutModal()">Checkout</button>
+        </div>
+    </div>
+    
+    <div id="checkoutModal" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close" onclick="hideCheckoutModal()">&times;</span>
+            <h3>Confirm Order</h3>
+            <p>Total Amount: $<span id="totalAmount"></span></p>
+            <button class="btn btn-success" onclick="confirmOrder()">Confirm Order</button>
+            <button class="btn btn-danger" onclick="hideCheckoutModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Modal window for login form with fields for username and password -->
+    <div id="loginPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="hideLoginPopup()">&times;</span>
+            <h3>Log In</h3>
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-3">
+                    <label for="loginUsername" class="form-label">Username:</label>
+                    <input type="text" id="loginUsername" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Password:</label>
+                    <input type="password" id="loginPassword" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </form>
+            <p class="signup-link">Not registered? <a href="#" onclick="showSignUpPopup()">Sign Up</a></p>
+        </div>
+    </div>
+    
+    <!-- SighUp -->
+    <div id="signUpPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="hideSignUpPopup()">&times;</span>
+            <h3>Sign-Up</h3>
+            <form onsubmit="handleSignUp(event)">
+                <div class="mb-3">
+                    <label for="signUpUsername" class="form-label">Username:</label>
+                    <input type="text" id="signUpUsername" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signUpPassword" class="form-label">Password:</label>
+                    <input type="password" id="signUpPassword" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign-up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profile -->
+    <div id="profilePopup" class="profile-popup">
+        <div class="profile-popup-content">
+            <span class="close" onclick="hideProfilePopup()">&times;</span>
+            <h3>Profile</h3>
+            <label for="profileUsername">Username:</label>
+            <input type="text" id="profileUsername" class="form-control" readonly>
+            <label for="profileEmail">Email:</label>
+            <input type="email" id="profileEmail" class="form-control">
+            <label for="profilePhone">Phone:</label>
+            <input type="text" id="profilePhone" class="form-control">
+            <button class="btn btn-success" onclick="saveProfile()">Save</button>
+            <button class="btn btn-danger" onclick="handleLogout()">Log Out</button>
+        </div>
+    </div>
+    
+        <!-- Footer :) -->
+    <footer class="footer bg-dark text-white text-center py-3">
+        <p>Team Members: Ayana Ussenbayeva, Dana Otepova, Dariya Khussainova</p>
+        <p>© 2024 Union Building Materials. All Rights Reserved.</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#" class="text-white">Privacy Policy</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Terms of Service</a></li>
+            <li class="list-inline-item"><a href="contact.html" class="text-white">Contact Us</a></li>
+        </ul>
+        <p id="dateTimeDisplay" class="text-white"></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
