@@ -783,8 +783,24 @@ function toggleTheme() {
         themeIcon.classList.replace('fa-sun', 'fa-moon');
     }
 
-    if (typeof updateMapStyle === 'function' && document.getElementById('map')) {
-        updateMapStyle();
+    if (typeof initMap === 'function' && document.getElementById('map')) {
+        resetMap();
+        initMap();
+    }
+}
+
+function resetMap() {
+    const mapContainer = document.getElementById('map');
+    
+    if (mapContainer) {
+        mapContainer.parentNode.removeChild(mapContainer);
+
+        const newMapContainer = document.createElement('div');
+        newMapContainer.id = 'map';
+        newMapContainer.style.width = '100%';
+        newMapContainer.style.height = '400px'; 
+
+        document.body.appendChild(newMapContainer);
     }
 }
 
@@ -804,16 +820,8 @@ function applyTheme() {
     }
 }
 
-function updateMapStyle() {
-    if (!map) return; 
-
-    const isNightTheme = document.body.classList.contains('night-theme');
-    map.setOptions({
-        styles: isNightTheme ? darkMapStyle : lightMapStyle
-    });
-}
-
 document.addEventListener('DOMContentLoaded', applyTheme);
+
 
 
 
