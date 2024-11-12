@@ -784,9 +784,13 @@ function toggleTheme() {
     }
 
     if (typeof initMap === 'function' && document.getElementById('map')) {
+        if (map) {
+            map = null;
+        }
         initMap();
     }
 }
+
 
 function applyTheme() {
     const savedTheme = localStorage.getItem('theme');
